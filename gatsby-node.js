@@ -29,23 +29,23 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     // const latitude = places.latitude;
     // const longitude = places.longitude;
 
-    const place = {
-    "id": places.nid,
-    "title" : places.title,
-    "name" : places.name,
-    "address" : places.address,
-    "city" : places.city,
-    "postal" : places.postal,
-    "latitude" : places.latitude,
-    "longitude" : places.longitude,
-    } 
-    return place
+    // const place = {
+    // "id": places.nid,
+    // "title" : places.title,
+    // "name" : places.name,
+    // "address" : places.address,
+    // "city" : places.city,
+    // "postal" : places.postal,
+    // "latitude" : places.latitude,
+    // "longitude" : places.longitude,
+    // } 
+    return places
 
   });
   matchedPlaces.forEach((node, index) => {
     createNode({
       ...node,
-      id: createNodeId(`${NODE_TYPE}-${node.id}`),
+      id: createNodeId(`${NODE_TYPE}-${node.nid}`),
       parent: null,
       children: [],
       internal: {
@@ -55,6 +55,4 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
       }
     })
   })
-
-  console.log(matchedPlaces)
 }
