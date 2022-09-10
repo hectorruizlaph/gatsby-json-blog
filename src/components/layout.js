@@ -8,13 +8,6 @@ import usePlaces from "../hooks/usePlaces"
 const Layout = () => {
   const { placesData } = usePlaces();
 
-let coordinates= placesData.map( (data, id) => {
-return [  
-  id,
-  data.coordinates
-]
-})
-console.log(coordinates)
   // const [places, setPlaces] = useState([])
 
   // useEffect(() => {

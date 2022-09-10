@@ -38,6 +38,8 @@ export default function usePlaces(){
     return {
       id,
       title,
+      name,
+      alias,
       address,
       city,
       coordinates: [longitude, latitude],
