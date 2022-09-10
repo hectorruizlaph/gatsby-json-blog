@@ -6,6 +6,7 @@ export default function usePlaces(){
     query {
       allPlaces {
         nodes {
+          id
           address
           alias
           city
@@ -17,13 +18,12 @@ export default function usePlaces(){
           state {
             name
           }
-          id
         }
       }
     }
   `)
   
-  const places = data.allPlaces.nodes.map(node => {
+  const placesData = data.allPlaces.nodes.map(node => {
     const { 
       id, 
       address,
@@ -40,10 +40,12 @@ export default function usePlaces(){
       title,
       address,
       city,
-      coordinates: [latitude, longitude]
+      coordinates: [longitude, latitude],
+      latitude,
+      longitude
     }
   });
   return {
-    places
+    placesData
   }
 }

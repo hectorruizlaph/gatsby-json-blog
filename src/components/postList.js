@@ -1,58 +1,31 @@
-// import React from "react"
-// import { Link, graphql, useStaticQuery } from "gatsby"
+import React from "react"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import usePlaces from "../hooks/usePlaces"
 
-// // const query = graphql`
-// //   query MyQuery {
-// //     allMarkdownRemark {
-// //       nodes {
-// //         frontmatter {
-// //           title
-// //         }
-// //         fields {
-// //           slug
-// //         }
-// //       }
-// //     }
-// //   }
-// // `
+const PostList = () => {
+    const { placesData } = usePlaces();
 
-// const query = graphql`
-//   query MyQuery {
-//     allMarkdownRemark {
-//       nodes {
-//         frontmatter {
-//           title
-//         }
-//         fields {
-//           slug
-//         }
-//       }
-//     }
-//   }
-// `
+  return (
+    <ul
+      style={{
+        width: "30vw",
+        listStyleType: "none",
+        padding: 0,
+        maxHeight: "99vh",
+        overflowY: "auto",
+      }}
+    >{placesData.map(place => {
+        const { id, title, address, city, coordinates } = place
+        return (
+          <li key={id}>
+            <h3>{title}</h3>
+            {/* <p>{coordinates.join(", ")}</p> */}
+            <p>{coordinates}</p>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
 
-// const PostList = () => {
-//   const data = useStaticQuery(query)
-//   const nodes = data.allMarkdownRemark.nodes
-
-//   return (
-//     <ul
-//       style={{
-//         width: "30vw",
-//         listStyleType: "none",
-//         padding: 0,
-//       }}
-//     >
-//       {nodes.map(node => {
-//         const title = node.frontmatter.title
-//         return (
-//           <li key={title}>
-//             <Link to={node.fields.slug}>{title}</Link>
-//           </li>
-//         )
-//       })}
-//     </ul>
-//   )
-// }
-
-// export default PostList
+export default PostList

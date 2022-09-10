@@ -1,52 +1,49 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+import React, { useState, useEffect } from "react"
+// import PropTypes from "prop-types"
+import Map from "./map"
+import PostList from "./postList"
+import usePlaces from "../hooks/usePlaces"
 
-import * as React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
-import "./layout.css"
+const Layout = () => {
+  const { placesData } = usePlaces();
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+let coordinates= placesData.map( (data, id) => {
+return [  
+  id,
+  data.coordinates
+]
+})
+console.log(coordinates)
+  // const [places, setPlaces] = useState([])
+
+  // useEffect(() => {
+  //   if (placesData) {
+  //     setPlaces(placesData.map( (data, id) => {
+  //       return console.log(data.coordinates)
+  //       // { 
+  //       //   "id": id,
+  //       //   "coordinates": data.coordinates
+  //       // }
+  //       }))
+  //   } else {
+  //     setPlaces([])
+  //   }
+  // }, [places])
 
   return (
     <>
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          footer
-        </footer>
+       <div style={{ display: "flex", overflowY: "hidden" }}>
+        <PostList />
+        {/* <Map places={placesData.coordinates} style={{ overflowY: "hidden" }}/>  */}
+        <Map /> 
       </div>
     </>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+// Layout.propTypes = {
+//   children: PropTypes.node.isRequired,
+// }
 
 export default Layout
