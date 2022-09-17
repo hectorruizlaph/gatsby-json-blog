@@ -29,16 +29,16 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     // const latitude = places.latitude;
     // const longitude = places.longitude;
 
-    // const place = {
-    // "id": places.nid,
-    // "title" : places.title,
-    // "name" : places.name,
-    // "address" : places.address,
-    // "city" : places.city,
-    // "postal" : places.postal,
-    // "latitude" : places.latitude,
-    // "longitude" : places.longitude,
-    // } 
+    const place = {
+    "id": places.nid,
+    "title" : places.title,
+    "name" : places.name,
+    "address" : places.address,
+    "city" : places.city,
+    "postal" : places.postal,
+    "latitude" : places.latitude,
+    "longitude" : places.longitude,
+    } 
     return places
 
   });
